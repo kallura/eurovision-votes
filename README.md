@@ -1,8 +1,8 @@
-##eurovision-votes
+## eurovision-votes
 
 Eurovision song contest voting system
 
-###Prerequisites
+### Prerequisites
 You will need to install java v1.8 and gradle, before you'll run app.
 Please see bellow, the installation example for Linux OS 
 
@@ -18,7 +18,7 @@ sdk install gradle 4.7
 apt-get install git
 ```
 
-###Installing
+### Installing
 Before you will use the app you will need to execute next commands:
 
 ```
@@ -27,13 +27,13 @@ cd eurovision-votes
 gradle clean
 gradle eurovisionJar
 ```
-###Running the tests
+### Running the tests
 
 ```
 gradle testClasses
 ```
 
-###Testing the app
+### Testing the app
 Please, prepare the test data file with JSON like:
 ```
 {'country':'Netherlands','votedFor':'Belgium'}
