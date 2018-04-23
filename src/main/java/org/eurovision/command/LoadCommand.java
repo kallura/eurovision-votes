@@ -42,19 +42,21 @@ public class LoadCommand implements Command {
         BufferedReader reader = new BufferedReader(new FileReader(file));
 
         // build aggregated votes from file
-        Map<String, Integer> votes = new HashMap<>();
+        Map<Vote, Integer> votes = new HashMap<>();
         String line;
         while ((line = reader.readLine()) != null) {
-            line = line.trim().replaceAll("\\s+", "");
-            if (!line.isEmpty())
-                votes.compute(line, (key, val) -> val == null ? 1 : val + 1);
+            line = line.trim();
+            if (!line.isEmpty()) {
+                Vote vote = MAPPER.readValue(line.trim(), Vote.class);
+                votes.compute(vote, (key, val) -> val == null ? 1 : val + 1);
+            }
         }
 
         // build country points index from aggregated votes
         Map<String, SortedSet<CountryPoints>> index = new HashMap<>();
 
-        for (Map.Entry<String, Integer> entry : votes.entrySet()) {
-            Vote vote = MAPPER.readValue(entry.getKey(), Vote.class);
+        for (Map.Entry<Vote, Integer> entry : votes.entrySet()) {
+            Vote vote = entry.getKey();
             index.computeIfAbsent(vote.getCountry(),
                     (key) -> new TreeSet<>(comparing(CountryPoints::getPoints))).
                     add(new CountryPoints(vote.getVotedFor(), entry.getValue()));
