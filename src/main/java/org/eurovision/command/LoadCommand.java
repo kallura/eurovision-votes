@@ -45,7 +45,7 @@ public class LoadCommand implements Command {
         Map<String, Integer> votes = new HashMap<>();
         String line;
         while ((line = reader.readLine()) != null) {
-            line = line.trim();
+            line = line.trim().replaceAll("\\s+", "");
             if (!line.isEmpty())
                 votes.compute(line, (key, val) -> val == null ? 1 : val + 1);
         }
