@@ -36,7 +36,15 @@ public class CommandTest {
 
             assertTrue(outContent.toString().contains("Netherlands 2018 voting results:\n"
                     + "1 point goes to Belgium\n"
-                    + "2 points go to Malta"));
+                    + "2 points go to Germany\n"
+                    + "3 points go to Malta\n"
+                    + "4 points go to Ukraine\n"
+                    + "5 points go to USA\n"
+                    + "6 points go to Poland\n"
+                    + "7 points go to Turkey\n"
+                    + "8 points go to France\n"
+                    + "10 points go to Australia\n"
+                    + "12 points go to Spain"));
         } catch (Exception e) {
             fail(e.getMessage());
         }
@@ -53,6 +61,12 @@ public class CommandTest {
         } catch (Exception e) {
             fail(e.getMessage());
         }
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void runLoadIncorrectDataSet() throws Exception {
+        loadCommand.run("input.txt", "2018");
+        resultsCommand.run("Germany", "2018");
     }
 
     @Test(expected = FileNotFoundException.class)
