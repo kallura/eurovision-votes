@@ -1,6 +1,8 @@
 ## eurovision-votes
 
-Eurovision song contest voting system
+Eurovision song contest voting system. The app has two function:
+1. Loads votes from the file and stores them under a year. 
+2. Displays the voting results for the given country and year.
 
 ### Prerequisites
 You will need to install java v1.8 and gradle, before you'll run app.
