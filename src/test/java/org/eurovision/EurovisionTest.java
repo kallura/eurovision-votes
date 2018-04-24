@@ -35,7 +35,15 @@ public class EurovisionTest {
 
             assertTrue(outContent.toString().contains("Netherlands 2019 voting results:\n"
                     + "1 point goes to Belgium\n"
-                    + "2 points go to Malta"));
+                    + "2 points go to Germany\n"
+                    + "3 points go to Malta\n"
+                    + "4 points go to Ukraine\n"
+                    + "5 points go to USA\n"
+                    + "6 points go to Poland\n"
+                    + "7 points go to Turkey\n"
+                    + "8 points go to France\n"
+                    + "10 points go to Australia\n"
+                    + "12 points go to Spain"));
         } catch (Exception e) {
             fail(e.getMessage());
         }

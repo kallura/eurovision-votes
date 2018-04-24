@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author Kseniia Orlenko
@@ -57,15 +58,31 @@ public class ResultsCommand implements Command {
         if (countryPoints == null) {
             System.out.println("-- NONE --");
         } else {
-            for (CountryPoints cp : countryPoints) {
-                System.out.println(formatCountryPoints(cp));
+            if (countryPoints.size() < 10) {
+                throw new IllegalArgumentException("Can't get the results due to incorrect "
+                        + "loaded a data set for the country : [" + country + "]"
+                        + ". Please reload the data set.");
             }
+            List<CountryPoints> winners = countryPoints.subList(0, 10);
+            displayResults(winners);
         }
 
     }
 
-    private static String formatCountryPoints(CountryPoints cp) {
-        int points = cp.getPoints();
-        return points + (points == 1 ? " point goes to " : " points go to ") + cp.getCountry();
+    private void displayResults(List<CountryPoints> winners) {
+        displayResult(winners.get(0).getCountry(), 1);
+        displayResult(winners.get(1).getCountry(), 2);
+        displayResult(winners.get(2).getCountry(), 3);
+        displayResult(winners.get(3).getCountry(), 4);
+        displayResult(winners.get(4).getCountry(), 5);
+        displayResult(winners.get(5).getCountry(), 6);
+        displayResult(winners.get(6).getCountry(), 7);
+        displayResult(winners.get(7).getCountry(), 8);
+        displayResult(winners.get(8).getCountry(), 10);
+        displayResult(winners.get(9).getCountry(), 12);
+    }
+
+    private static void displayResult(String country, int points) {
+        System.out.println(points + (points == 1 ? " point goes to " : " points go to ") + country);
     }
 }
